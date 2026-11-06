@@ -19,3 +19,4 @@ Mở `index.html` bằng trình duyệt hoặc phục vụ thư mục này bằn
 - `index.html`: bố cục trang và nội dung HTML.
 - `assets/css/`: kiểu giao diện, theme sáng/tối và bố cục responsive.
 - `assets/js/`: mô phỏng, sơ đồ, dữ liệu nội dung và tương tác của các thẻ.
+- `assets/fonts/`: font Be Vietnam Pro và giấy phép OFL; font được tải cục bộ, không phụ thuộc Google Fonts.
