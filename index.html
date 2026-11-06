@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>try{var t=localStorage.getItem('mp5g-theme');document.documentElement.setAttribute('data-theme',(t==='dark'||t==='light')?t:'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}</script>
+<!-- Google tag (gtag.js): đo lượt truy cập bằng Google Analytics -->
+<meta name="author" content="duc.lexuan">
+<meta name="copyright" content="© 2026 duc.lexuan">
+<title>Mô phỏng mạng vô tuyến 5G (RAN) – SA / NSA</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mô phỏng 5G">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#EEF4FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#040B1A" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAFn0lEQVR4nO3cMa4URxCA4X4WmVMiDmCQHDlC4gKIEyAOQEDAaQgIOIDFCZCP4IjIARyAG5A7WAmNdrZ6e6aqurq7/i+0n3Z7Zv6pnt337IfHz16UOL//8Vfl3/78/tXvrZ+8ftf+wz8+f/RbSeBJqHsIjKNyUjzOyKEa6jxa6Xw2WoTF0edcGAYhMQxltD5i4vA+Cx2a2DOpZKg+AuKQjn/eLLZcE+ncR+84/A47PIstfSIj9NE1DqcDPp1F4yX0fn1JeB/94vA41KiPo93eN7aP4DhOH2T75XH9iqLDMmzP2yGd4uhfhmsTe65LiuqjRxydy+icxZbf2kL6cI/DcNccOYstj3WGPHzExGFexiBZbJkvuP/w8I2jQxkDZrFlu/LOffzm9LqFMkop1RWe+Prk5tmr/1JXwysOqxVPXcaFbR83OfXhta2YjA3p3M2SxRWrw+m2ubhMDsq4SVr50fnRbXNxmRz7hQ5bxqsPb+s/8OX9J9t39Jsf5sPDPg792HAt424NdSatmBxgh82lRxwjlKFsYk9ZiVMfQ8ehzNmjDPMstjSJ6A/We3g4fs9xoV/r6TJefXjrWobyLfS75Ey/W/EYG+fOoHcTN52bIsqjdh0evnGMX8bdK2r7ajeZ9zFcHJqEDR81Wq7l6QcFpxdXHr7f8HCMo/PY6PmNhfl7jTk8bOIwHxu2ZZh/keXxpprz4DQ8vD6taFZmWMaX95+cyrj74kcfijUfXpw+thjEoflWX/9ryXoZyhdvYdjHnub86H/bYhDHz+9fr8rtNjbCy7j7Xof6MBwe+4tygsvX532eNqTz3jOLK/olKZ88bPcX+2eOnk8be4FlmLz7UE8e7l+fS5RPGzfv0dgyKmtQPnxE/WfAYXHsKTeUEcq4UPYxzl8zxcShuRVCfm9iQrPykOERE8f+5lDeLuOMjQvleq7Oxo/PH0PGSeT/E+zick80HvzgG8oVzWqfvH4Xvr/EP3Mob4thyyi6tYWXUUaIo928TxtbEx3FTHHsjTw2LsZfYcU0cUx0w901y7FME8f+Fpzlppx35Y+iF3DAr3M6y513ZZYmfon/KIthzTQ5/Pz59/Uo+u/NZHe5h+yTY5/FVvJEpnkg9VAvo+UH1pY3jsYLn7mPpHEcuuRp+0gaB1pkjOPEJMg5PDLGgUbEARFxQEQcEBEHRBnjOPGleM7v0TPGgUZJ4zg0CXKOjZI2jtJ8ydOWUTLHURoufOYyCn/PccEf+9xEHKWU8u3ff/b/8Onzl/1XMpTU2wrqiAMi4ri9p6AQRwXREAdE2eNgPFRkj6MueTrEARFxQJQ6jpZdI/POkjoO1BEHRHnjyLxfNMobR7u0GREHREnjSDsMDkkax1E5YyIOiDLGkXMMnJAxDjQijlYJ5w1xQJQujoQD4LR0cWhkC4s4IMoVR7ZbXylXHDiEOI5JNXsSxZHquppIFAeOIo7D8kwg4oAoSxx5bndDWeKwlSQ14oAoRRxJbnRzKeLAOcRxUoZptH4cGa6ik/XjwGnEcd7yM4k4IFo8juVvbleLxwEN4lBZezKtHMfaV66DleOAEnFoLTyflo1j4WvWzbJxQI84IFozjs57yqpb2JpxwARxQEQcNpbcWRaMY8nrFGLBOGCFOMysN7FWi2O9KxRotThgiDggWiqO8D0lfAG2looDtogDIuIwttLOsk4cK12VQawTB8wRB0SLxDHUnjLUYjQeHj97Eb2GO5Y513tPn7+MXkLNIpMDHogDIuKAiDggIg6IJvi0gihMDoiIAyLigIg4ICIOiIgDIuKAiDggIg6IiAMi4oCIOCAiDoiIAyLigIg4ICIOiIgDIuKAiDggIg6IiAMi4oCIOCAiDoiIAyLigIg4ICIOiIgDIuKAiDggIg6IiAMi4oCIOCAiDoiIAyLigIg4IPofCC+dMSbOsIgAAAAASUVORK5CYII=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/complete-01.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>Mạng di động 5G, 4G, 3G hoạt động thế nào</h1>
+  <p class="sub">Trình mô phỏng theo chuẩn 3GPP, từ trạm gốc tới mạng lõi. Chọn 5G SA, 5G NSA hoặc 4G; chọn mạng riêng, MORAN hoặc MOCN; chọn vendor, đổi tham số và xem mạng phản ứng ra sao.</p>
+  <p class="by">© 2026 <b>duc.lexuan</b> · Tác giả và giữ bản quyền</p>
+</div></header>
+
+<div class="bar"><div class="wrap">
+  <div class="switches">
+    <div class="seg" id="segMode" role="group" aria-label="Kiến trúc triển khai">
+      <button type="button" data-mode="SA">5G SA</button><button type="button" data-mode="NSA">5G NSA</button><button type="button" data-mode="LTE">4G</button>
+    </div>
+    <div class="seg" id="segShare" role="group" aria-label="Chia sẻ mạng truy nhập">
+      <button type="button" data-share="none">Mạng riêng</button><button type="button" data-share="moran">MORAN</button><button type="button" data-share="mocn">MOCN</button>
+    </div>
+    <div class="seg" id="segVendor" role="group" aria-label="Vendor">
+      <button type="button" data-vendor="3gpp">3GPP</button><button type="button" data-vendor="huawei">Huawei</button><button type="button" data-vendor="nokia">Nokia</button><button type="button" data-vendor="ericsson">Ericsson</button>
+    </div>
+    <div class="seg" id="segTheme" role="group" aria-label="Giao diện sáng hoặc tối">
+      <button type="button" data-theme-set="light">Sáng</button><button type="button" data-theme-set="dark">Tối</button>
+    </div>
+    <button type="button" class="btn sm" id="layBtn" aria-pressed="false" aria-label="Sắp xếp các khung">Sắp xếp<span class="lg"> khung</span></button>
+    <div class="srch" role="search"><input type="search" id="q" placeholder="Tìm: khối, bản tin, tham số, tính năng…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Tìm kiếm trong toàn bộ mô phỏng" aria-controls="qres"><button type="button" id="qx" aria-label="Xoá ô tìm kiếm" hidden>×</button></div>
+  </div>
+  <div class="qres" id="qres" hidden aria-live="polite"></div>
+  <div class="tabwrap" id="tabWrap"><button type="button" class="tarr" id="tabL" aria-label="Cuộn thanh thẻ sang trái">‹</button><nav class="tabs" id="tabs" role="tablist" aria-label="Nội dung mô phỏng">
+    <div class="tgrp"><button type="button" class="tgh" aria-haspopup="true" aria-expanded="false"><span class="tgn">Lõi và kiến trúc</span><span class="tgs"></span><span class="tgc" aria-hidden="true">▾</span></button><div class="tdrop" role="group" aria-label="Lõi và kiến trúc"><button role="tab" data-tab="e2">Toàn trình E2E</button><button role="tab" data-tab="arch">Kiến trúc</button><button role="tab" data-tab="core">Mạng lõi</button><button role="tab" data-tab="ims">IMS</button><button role="tab" data-tab="rm">Roaming</button><button role="tab" data-tab="pn">Mạng riêng 5G</button><button role="tab" data-tab="nsl">Network slicing, QoS, cước</button><button role="tab" data-tab="udm">UDM và dữ liệu thuê bao</button><button role="tab" data-tab="it">Liên mạng, OTT</button></div></div>
+    <div class="tgrp"><button type="button" class="tgh" aria-haspopup="true" aria-expanded="false"><span class="tgn">Vô tuyến (RAN)</span><span class="tgs"></span><span class="tgc" aria-hidden="true">▾</span></button><div class="tdrop" role="group" aria-label="Vô tuyến (RAN)"><button role="tab" data-tab="u3">Mạng 3G UTRAN</button><button role="tab" data-tab="radio">Phủ sóng và di động</button><button role="tab" data-tab="mob">Di động và điều hướng</button><button role="tab" data-tab="hx">Chuyển giao</button><button role="tab" data-tab="nd">NSA EN-DC và di động 5G-A</button><button role="tab" data-tab="ro">Tối ưu vô tuyến</button><button role="tab" data-tab="lb">Đa lớp tần số và cân bằng tải</button><button role="tab" data-tab="sf">Hiệu quả tần số tại một trạm</button><button role="tab" data-tab="rsh">Chia sẻ RAN</button><button role="tab" data-tab="frame">Khung và lưới tài nguyên</button><button role="tab" data-tab="prb">Cấp phát PRB</button><button role="tab" data-tab="ca">5G-Advanced</button><button role="tab" data-tab="beam">Búp sóng 3D</button><button role="tab" data-tab="es">Tiết kiệm điện</button></div></div>
+    <div class="tgrp"><button type="button" class="tgh" aria-haspopup="true" aria-expanded="false"><span class="tgn">Dịch vụ và giao thức</span><span class="tgs"></span><span class="tgc" aria-hidden="true">▾</span></button><div class="tdrop" role="group" aria-label="Dịch vụ và giao thức"><button role="tab" data-tab="vo">VoLTE</button><button role="tab" data-tab="sv">Dịch vụ 4G/5G</button><button role="tab" data-tab="sig">Báo hiệu và lưu lượng</button><button role="tab" data-tab="pr">Giao thức</button><button role="tab" data-tab="stack">Giao thức và fronthaul</button></div></div>
+    <div class="tgrp"><button type="button" class="tgh" aria-haspopup="true" aria-expanded="false"><span class="tgn">Truyền dẫn và bảo mật</span><span class="tgs"></span><span class="tgc" aria-hidden="true">▾</span></button><div class="tdrop" role="group" aria-label="Truyền dẫn và bảo mật"><button role="tab" data-tab="sc">Bảo mật và xác thực</button><button role="tab" data-tab="tx">Truyền dẫn</button><button role="tab" data-tab="leo">Truyền dẫn vệ tinh LEO</button><button role="tab" data-tab="fw">Tường lửa</button></div></div>
+    <div class="tgrp"><button type="button" class="tgh" aria-haspopup="true" aria-expanded="false"><span class="tgn">KPI và phân tích</span><span class="tgs"></span><span class="tgc" aria-hidden="true">▾</span></button><div class="tdrop" role="group" aria-label="KPI và phân tích"><button role="tab" data-tab="kpi">KPI mạng</button><button role="tab" data-tab="al">Cảnh báo, sự cố</button><button role="tab" data-tab="ml">Machine Learning</button></div></div>
+    <div class="tgrp"><button type="button" class="tgh" aria-haspopup="true" aria-expanded="false"><span class="tgn">Tham khảo</span><span class="tgs"></span><span class="tgc" aria-hidden="true">▾</span></button><div class="tdrop" role="group" aria-label="Tham khảo"><button role="tab" data-tab="vendor">So sánh vendor</button><button role="tab" data-tab="book">Chuyên đề</button></div></div>
+  </nav><button type="button" class="tarr" id="tabR" aria-label="Cuộn thanh thẻ sang phải">›</button></div>
+</div></div>
+
+<main><div class="wrap">
+  <p class="layhint" id="layHint" hidden>Đang sắp xếp: giữ nút “≡ Kéo” rồi kéo khung tới chỗ mới, hoặc bấm ↑ ↓ ⇄ ở góc mỗi khung. Nút “Ghim” giữ khung trên màn hình khi cuộn. Bố cục được nhớ trên máy này. <button type="button" class="btn sm" id="layReset">Đặt lại bố cục</button></p>
+  <details class="cell" id="cellCfg">
+    <summary><span id="cellTitle">Cấu hình cell NR</span> <span id="chips" style="display:contents"></span></summary>
+    <div class="ctl" id="cellCtl"></div>
+  </details>
+
+  <div class="panel shp" id="shareBox" hidden></div>
+
+  <section class="tab" id="t-kpi">
+    <p class="lead">Bộ KPI theo 3GPP (TS 32.450, 32.410, 32.409, 28.554...), ITU và cách tính của Huawei, Ericsson, Nokia. Mỗi KPI ghi dạng Tên đầy đủ (VIẾT TẮT) kèm đoạn giải thích vai trò trong mạng; tìm được theo viết tắt như CSSR, CDR, CSFB, HOSR. Bảng tra viết tắt A–Z nằm ở cuối thẻ. Chọn một KPI để xem nó nằm ở node nào (hoạt ảnh gói tin chạy), công thức, counter, ý nghĩa và quy trình xử lý khi không đạt. Đợt này có RAN 2G đến 5G, lõi 4G/5G và IMS/VoLTE; truyền dẫn (IP/MPLS, fronthaul, đồng bộ, vi ba, quang), CNTT (CPU/RAM, Kubernetes, storage) và bảo mật (firewall, IPsec, 5G-AKA, SEPP, SOC) đã được thêm ở đợt 2.</p>
+    <div class="kpgrid">
+      <div class="panel kpflt"><div id="kpFlt"></div></div>
+      <div class="panel kplist"><div id="kpList"></div></div>
+      <div class="kpdet" id="kpDet"></div>
+    </div>
+    <details class="panel kpabbr" id="kpAbbr"><summary>Bảng tra viết tắt KPI (A–Z)</summary>
+      <label class="note" for="kpAbQ">Lọc theo viết tắt, tên đầy đủ hoặc ý nghĩa</label><br><input type="search" id="kpAbQ" placeholder="Ví dụ: CDR, CSSR, drop, handover">
+      <div class="kpabw"><table><thead><tr><th>Viết tắt</th><th>Tên đầy đủ</th><th>Ý nghĩa tóm tắt</th><th>Mở KPI</th></tr></thead><tbody id="kpAbBody"></tbody></table></div>
+    </details>
+  </section>
+
+  <section class="tab" id="t-book">
+    <p class="lead">Các chuyên đề bổ sung: 17 chuyên đề theo mục lục giáo trình 5G và 22 chuyên đề mở rộng (dịch vụ, vô tuyến nâng cao, lõi và bảo mật, vận hành). Mỗi chuyên đề là một mô phỏng nhỏ cho phần mà các thẻ khác chưa có. Chọn chuyên đề, đổi tham số, rồi bấm Chạy tự động hoặc Tiến một bước. Bảng đối chiếu ở cuối cho biết mỗi chương của sách nằm ở đâu trong mô phỏng.</p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="bkTitle"></h3><div id="bkFig"></div></div>
+        <div class="panel"><h3>Kết quả</h3><dl class="kv" id="bkOut"></dl></div>
+        <div class="panel"><h3 id="bkTblT">Bảng tra</h3><div class="scroll"><table id="bkTbl"></table></div></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn chuyên đề và tham số</h3><div class="ctl" id="bkCtl"></div></div>
+        <div class="panel" id="bkInfo"></div>
+        <div class="panel"><h3>Danh mục: mục lục giáo trình và các chuyên đề mở rộng</h3><div class="scroll"><table id="bkMap"></table></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-e2">
+    <p class="lead">Chạy từng luồng từ đầu đến cuối qua toàn mạng: máy đầu cuối, trạm, truyền dẫn, mạng lõi, IMS, tính cước và mạng ngoài. Chọn công nghệ 3G, 4G, 5G NSA hoặc 5G SA, chọn kịch bản rồi bấm Chạy: chấm sáng chạy theo đường đi thật của bản tin, sơ đồ tuần tự đánh dấu bước đang chạy, bảng dưới so sánh cùng pha giữa bốn công nghệ.</p>
+    <div class="panel" id="e2Ctl"></div>
+    <div class="panel"><h3>Sơ đồ mạng toàn trình</h3><div class="scroll"><div id="e2Net" class="e2net"></div></div>
+      <p class="legend"><span><i style="background:var(--cp)"></i>Báo hiệu điều khiển</span><span><i style="background:var(--up)"></i>Dữ liệu người dùng</span><span><i style="background:var(--sip)"></i>SIP (IMS)</span></p>
+      <p class="note" style="margin:6px 0 0">Đường mảnh nét đứt: chỉ có báo hiệu. Đường liền: có dữ liệu. Chạm vào một nút để xem vai trò. Các nút mờ không tham gia bước hiện tại.</p></div>
+    <div class="cols">
+      <div class="panel" id="e2Info" aria-live="polite"></div>
+      <div class="panel"><h3>Tóm tắt kịch bản</h3><dl class="kv" id="e2Out"></dl></div>
+    </div>
+    <div class="panel"><h3>Sơ đồ tuần tự (ladder)</h3><p class="hint">Bấm một bản tin để nhảy tới bước đó. Mũi tên nét đứt là dữ liệu người dùng.</p><div class="e2lad" id="e2Lad"></div></div>
+    <div class="panel" id="e2Kpi"></div>
+    <div class="panel"><h3 id="e2CmpT">So sánh 3G / 4G / 5G</h3><p class="hint">Cùng một pha, mỗi công nghệ dùng bản tin và giao diện nào. Cột đang chọn được tô.</p><div class="scroll"><table class="e2tb e2w" id="e2Cmp"></table></div></div>
+    <div class="panel"><h3>Nút mạng và chức năng tương ứng giữa các thế hệ</h3><div class="scroll"><table class="e2tb e2w" id="e2Map"></table></div><p class="note" style="margin:8px 0 0">Thời gian điển hình là ước lượng tham khảo, phụ thuộc cấu hình và tải thực tế. Tên bản tin theo 3GPP; nội dung chi tiết từng IE xem tài liệu ghi ở phần tóm tắt.</p></div>
+  </section>
+  <section class="tab" id="t-arch">
+    <p class="lead" id="archLead"></p>
+    <div class="cols">
+      <div class="panel">
+        <div class="ctl" id="archCtl" style="margin-bottom:10px"></div>
+        <div id="arch"></div>
+        <p class="legend"><span><i style="background:var(--cp)"></i>Mặt phẳng điều khiển (báo hiệu)</span><span><i style="background:var(--up)"></i>Mặt phẳng người dùng (dữ liệu)</span></p>
+        <p class="note" style="margin:6px 0 0">Chạm vào một khối hoặc tên giao diện để xem vai trò của nó. Chấm chạy chỉ minh hoạ đường đi; thực tế cả hai mặt phẳng đều hai chiều.</p>
+      </div>
+      <div class="panel" id="archInfo" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-core">
+    <p class="lead" id="coreLead"></p>
+    <div class="cols">
+      <div class="panel">
+        <div class="ctl" id="coreCtl" style="margin-bottom:10px"></div>
+        <div id="core"></div>
+        <p class="legend"><span><i style="background:var(--cp)"></i>Báo hiệu</span><span><i style="background:var(--up)"></i>Dữ liệu người dùng</span></p>
+        <p class="note" style="margin:6px 0 0">Chạm vào một khối hoặc tên giao diện để xem vai trò của nó. Đổi SA/NSA ở thanh trên để chuyển giữa lõi 5G và lõi 4G; dùng ô chọn phía trên để xem các phần khác của mạng lõi.</p>
+      </div>
+      <div>
+        <div class="panel" id="coreInfo" aria-live="polite"></div>
+        <div id="pktPanels">
+        <div class="panel"><h3>Thoại chạy bằng cách nào ở từng vùng phủ</h3><div class="scroll"><table id="voiceTable"></table></div></div>
+        <div class="panel"><h3>Dữ liệu và thoại dùng kênh nào</h3><div class="scroll"><table id="qosTable"></table></div></div>
+        <div class="panel"><h3>Tính cước: ai đo, báo cho ai</h3><div class="scroll"><table id="chgTable"></table></div></div>
+        </div>
+        <div class="panel" id="xPanel"><h3 id="xTitle"></h3><div class="scroll"><table id="xTable"></table></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-u3">
+    <p class="lead">Mạng 3G UMTS từ đầu đến cuối: kiến trúc UTRAN và lõi CS/PS, giao diện và ngăn xếp giao thức; lớp vật lý WCDMA với mã OVSF, điều khiển công suất, tải và thở cell; năm trạng thái RRC; chuyển giao mềm, cứng, IRAT, SRNS relocation; HSDPA, HSUPA; tham số, KPI và lỗi thường gặp theo Huawei, Nokia, Ericsson. Chọn mục bên dưới; các mô phỏng chạy liên tục, đổi tham số để thấy kết quả thay đổi ngay.</p>
+    <div class="panel u3navp"><div id="u3Nav"></div></div>
+    <div id="u3Body"></div>
+  </section>
+  <section class="tab" id="t-nd">
+    <p class="lead">5G NSA và SA chuyên sâu cho tối ưu vô tuyến: các option triển khai 2, 3, 3a, 3x, 4, 5, 7; vòng đời SgNB (thêm bằng B1, đổi PSCell, xoá bằng A2) với split bearer qua X2-U; lỗi SCG theo nguyên nhân (t310, truy nhập ngẫu nhiên, RLC, T307) và cách xử lý rớt EN-DC; PDCP duplication cho URLLC và NR-DC FR1 + FR2; di động 5G-Advanced so sánh HO thường, CHO, DAPS, LTM. Có nhật ký bản tin X2AP/RRC/S1AP/NGAP, tham số theo Huawei, Nokia, Ericsson, KPI và lỗi thường gặp. Chọn mục bên dưới; mô phỏng chạy liên tục, đổi tham số để thấy kết quả thay đổi.</p>
+    <div class="panel u3navp"><div id="ndNav"></div></div>
+    <div id="ndBody"></div>
+  </section>
+
+  <section class="tab" id="t-ro">
+    <p class="lead">Tối ưu vô tuyến 4G/5G cho kỹ sư hiện trường: nhiễu TDD (nhiễu xa qua ống dẫn khí quyển với RIM-RS và back-off, nhiễu chéo CLI giữa hai cấu hình khung, lệch đồng bộ khi mất GNSS); nhiễu đường lên (PIM tính theo sản phẩm IM3/IM5, nhiễu ngoài, repeater, lỗi nhánh thu) dò theo RSSI từng PRB và noise floor; điều khiển công suất PUSCH/PUCCH theo TS 38.213 với P0, alpha, TPC và báo cáo PHR; PRACH tính thật chuỗi Zadoff-Chu, N_CS, bán kính cell và timing advance; quy hoạch PCI/RSI trên lưới 19 trạm × 3 sector (mod 3/4/30, collision, confusion), tilt, azimuth, chồng lấn. Có nhật ký bản tin, tham số Huawei, Nokia, Ericsson (cần đối chiếu), KPI và lỗi thường gặp. Chọn mục bên dưới; mô phỏng chạy liên tục, đổi tham số để thấy kết quả thay đổi ngay.</p>
+    <div class="panel u3navp"><div id="rxNav"></div></div>
+    <div id="rxBody"></div>
+  </section>
+  <section class="tab" id="t-lb">
+    <p class="lead">Đa lớp tần số cho 4G/5G và 5G-Advanced: vùng phủ băng thấp n28 700 MHz và n8 900 MHz so với 1800, 2100, 2600, 3500 MHz và mmWave (quỹ đường truyền DL/UL, xuyên toà nhà, bán kính cell, giới hạn đường lên, DSS trên 900, SUL và neo NSA); chiến lược lớp phủ và lớp dung lượng với ưu tiên chọn lại cell khi rỗi (SIB2/SIB4, threshX-High/Low, ưu tiên riêng qua RRCRelease); cân bằng tải khi kết nối IFLB/MLB bằng HO A4, CIO và Xn Resource Status, chống ping-pong; cân bằng tải 5G-A theo PCell/SCell, BWP, CHO/LTM, NSA/SA, AI/ML; mô phỏng 7 trạm × 5 lớp theo giờ với bật/tắt từng thuật toán; tham số Huawei, Nokia, Ericsson, KPI và lỗi thường gặp.</p>
+    <div class="panel u3navp"><div id="lbNav"></div></div>
+    <div id="lbBody"></div>
+  </section>
+  <section class="tab" id="t-sf">
+    <p class="lead">Hiệu quả tần số tại MỘT trạm nhiều sóng mang (mặc định NR n41 2600 TDD 100 MHz + n77 3800 TDD 100 MHz, kèm LTE B3 1800 và B1 2100): số PRB vật lý từng sóng mang theo băng thông và SCS, mẫu khung TDD, overhead PDCCH/SSB/CSI-RS và tốc độ đỉnh; lưới PRB × khe thời gian thực của từng sóng mang tô theo UE, dịch vụ hay loại UE; bộ lập lịch PF chia gói giữa các CC cho UE không CA, LTE-A CA, NR CA n41+n77, EN-DC và 5G-A (kích hoạt SCell bằng MAC CE, lập lịch chéo sóng mang, một DCI cho nhiều cell); so sánh thuật toán cân bằng theo tải PRB, hiệu suất phổ, dung lượng còn lại, ưu tiên PCell; kịch bản giờ cao điểm, tỉ lệ máy CA, UE gần/xa, tắt một sóng mang, 4G CA so với 5G CA và EN-DC; tham số ba vendor, KPI và lỗi thường gặp.</p>
+    <div class="panel u3navp"><div id="sfNav"></div></div>
+    <div id="sfBody"></div>
+  </section>
+  <section class="tab" id="t-pn">
+    <p class="lead">Mạng riêng 5G cho doanh nghiệp và dịch vụ ngành: bốn mô hình triển khai (SNPN độc lập với RAN và 5GC tại chỗ, PNI-NPN dùng lát cắt và CAG trên mạng công cộng, mô hình lai RAN chia sẻ với UPF/MEC tại doanh nghiệp, truy nhập SNPN qua PLMN bằng N3IWF) cùng nhận dạng PLMN ID + NID, CAG, SIB1 npn-IdentityInfoList và các ca Registration Reject #74/#75/#76; vô tuyến trong nhà xưởng theo mô hình InF của TR 38.901 với small cell kéo thả, vùng lõm sau máy kim loại và nhiễu khi khung TDD lệch với nhà mạng; URLLC công nghiệp với ngân sách trễ từng khối và Monte Carlo 10⁵–10⁶ gói (configured grant, mini-slot, qam64LowSE, PDCP duplication, preemption); TSN qua 5G (DS-TT, NW-TT, TSCAI, gPTP dưới 1 µs) và 5G LAN; FWA và sáu kịch bản ngành từ yêu cầu tới cấu hình đề xuất; tham số ba vendor, KPI và lỗi thường gặp.</p>
+    <div class="panel u3navp"><div id="pnNav"></div></div>
+    <div id="pnBody"></div>
+  </section>
+  <section class="tab" id="t-nsl">
+    <p class="lead">Network slicing, QoS và tính cước trong 5G SA: S-NSSAI (SST, SD) và các loại NSSAI cấu hình, xin, được phép, bị từ chối, chờ; NSSF chọn slice và AMF set, xác thực theo slice NSSAA, giới hạn số UE NSAC, slice ở RAN Rel-17 (SIB16, RACH theo NSAG) và quản lý vòng đời slice theo GST/NEST; mô hình QoS 5QI, ARP, QFI với GBR, non-GBR, delay-critical GBR, ánh xạ QoS flow sang DRB qua SDAP và QoS phản ánh, mô phỏng nhiều luồng chia PRB theo 5QI; chia PRB giữa các slice bằng RRM policy (dedicated, prioritized, shared) và so sánh có, không có hạn mức khi eMBB tăng tải; PCF, URSP trên UE, chọn SMF/UPF theo slice và lược đồ đăng ký, lập phiên có slice; CHF với Nchf converged charging, hạn mức, cước theo slice/QoS, SLA và báo cáo; tham số vendor, KPI theo slice và lỗi thường gặp.</p>
+    <div class="panel u3navp"><div id="nslNav"></div></div>
+    <div id="nslBody"></div>
+  </section>
+  <section class="tab" id="t-udm">
+    <p class="lead">UDM và dữ liệu thuê bao trong 5GC: kiến trúc UDM (ARPF, SIDF), AUSF, UDR theo mô hình front-end/back-end, UDR dùng chung với PCF và NEF, HSS+UDM hội tụ cho 4G, IMS và 5G; các dịch vụ Nudm (UEAU, UECM, SDM, EE, PP), Nausf, Nudr với lược đồ bản tin khi đăng ký, lập phiên PDU, đổi AMF, chuyển vùng, đổi gói cước (subscribe/notify) và đồng bộ lại SQN; mô hình dữ liệu AM, SMF selection, SM (DNN, S-NSSAI, 5QI, AMBR), SMS, IMS với thuê bao mẫu sửa được và tác động của mở, đổi, chặn, khoá, xoá thuê bao; dự phòng địa lý, sao chép UDR, mất một site và bão đăng ký (back-off, chống quá tải); liên hoạt động HSS (S6a, Cx, SWx) với UDM (N8, N10, N13) qua chuyển đổi Diameter ↔ HTTP/2; tham số, KPI và lỗi thường gặp.</p>
+    <div class="panel u3navp"><div id="udmNav"></div></div>
+    <div id="udmBody"></div>
+  </section>
+  <section class="tab" id="t-radio">
+    <p class="lead">Trạm gNB1 ở giữa, ba trạm lân cận gNB2, gNB3, gNB4 bao quanh, mỗi trạm ba sector và có vùng phủ riêng tô màu trên mặt bằng. Kéo một trạm lân cận để đổi vị trí (khoảng cách tính bằng mét), kéo vật cản để che sóng, kéo UE hoặc chọn hướng đi rồi bấm Chạy tự động. UE đo cả bốn trạm, và mạng handover sang lân cận mạnh nhất khi thoả điều kiện.</p>
+    <div class="cols">
+      <div>
+        <div class="panel">
+          <h3>Mặt bằng nhìn từ trên xuống</h3>
+          <div class="ctl" id="covCtl" style="margin-bottom:10px"></div>
+          <div id="scene"><svg id="sceneSvg" role="img" aria-label="Mặt bằng bốn trạm và UE"><g id="scS"></g><g id="scD"></g><g id="ueG"><circle r="24" fill="transparent"/><circle class="ue-dot" r="7"/><text class="ue-lab" y="-12">UE</text></g></svg></div>
+          <p class="legend" id="covLeg"></p>
+        </div>
+        <div class="panel">
+          <h3>RSRP dọc đường UE đi</h3>
+          <div id="chart"><svg id="chartSvg" role="img" aria-label="Đồ thị RSRP theo vị trí"><g id="chS"></g><g id="chD"></g></svg></div>
+          <p class="legend" id="chLegend"></p>
+          <ol id="evList"></ol>
+        </div>
+      </div>
+      <div>
+        <div class="panel"><h3>UE đang thấy gì</h3><dl class="kv" id="radioOut"></dl></div>
+        <div class="panel"><h3>Các cell UE đo được, từ mạnh tới yếu</h3><div class="scroll"><table id="nbrTable"></table></div><p class="note" id="nbrNote" style="margin:10px 0 0"></p></div>
+        <div class="panel"><h3>Nhiễu đường xuống và đường lên của 5G, 4G, 3G</h3><div class="scroll"><table id="intTable"></table></div><p class="note" id="intNote" style="margin:10px 0 0"></p></div>
+        <div class="panel"><h3>Vị trí trạm và vật cản</h3><div class="ctl" id="siteCtl" style="margin-bottom:12px"></div><div id="obsRows"></div><p class="note" style="margin:10px 0 0">Hấp thụ là phần sóng mất đi khi xuyên qua vật cản. Tán xạ và nhiễu xạ là phần sóng vòng qua mép hoặc dội từ công trình xung quanh; càng cao thì vùng khuất phía sau càng nông. Tần số càng cao, vật cản hấp thụ càng mạnh.</p></div>
+        <div class="panel"><h3>Môi trường và di động</h3><div class="ctl" id="radioCtl"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-ims">
+    <p class="lead" id="imLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="imFigT"></h3><p class="hint" id="imHint"></p><div id="imFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="imOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="imCtl"></div></div>
+        <div class="panel" id="imInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="imTblT"></h3><div class="scroll"><table id="imTbl"></table></div></div>
+  </section>
+
+  <section class="tab" id="t-vo">
+    <p class="lead" id="voLead"></p>
+    <div class="panel" id="vaPanel"><h3>Phân tích log VoLTE đã trace</h3>
+      <p class="hint">Tải lên file .zip hoặc .rar xuất từ hệ thống trace (Callflowchart.csv, CallflowChartDetails.txt, file pcap), hoặc từng file .csv, .txt, .pcap, .pcapng. File chỉ được đọc trong trình duyệt của bạn, không gửi đi đâu.</p>
+      <div class="vadrop" id="vaDrop"><label class="btn pri" for="vaFile">Chọn file log</label> <span class="note">hoặc kéo thả file vào đây</span>
+        <input type="file" id="vaFile" accept=".zip,.rar,.csv,.txt,.pcap,.pcapng,.cap,.log" multiple hidden></div>
+      <p class="row"><span class="note">Chưa có log? Chạy thử log mẫu tổng hợp:</span> <button type="button" class="btn sm" id="vaDemo1">Cuộc gọi lỗi (silent call, CRBT)</button> <button type="button" class="btn sm" id="vaDemo2">Cuộc gọi bình thường</button></p>
+      <div id="vaOut"></div>
+    </div>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="voFigT"></h3><p class="hint" id="voHint"></p><div id="voFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="voOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="voCtl"></div></div>
+        <div class="panel" id="voInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="voTblT"></h3><div class="scroll"><table id="voTbl"></table></div></div>
+  </section>
+  <section class="tab" id="t-pr">
+    <p class="lead" id="prLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="prFigT"></h3><p class="hint" id="prHint"></p><div id="prFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="prOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="prCtl"></div></div>
+        <div class="panel" id="prInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="prTblT"></h3><div class="scroll"><table id="prTbl"></table></div></div>
+  </section>
+  <section class="tab" id="t-sc">
+    <p class="lead">Bảo mật và xác thực từ 3G đến 5G cho kỹ sư vận hành: 5G-AKA, EAP-AKA′ từng bước với SUPI/SUCI (ECIES), so với EPS-AKA và UMTS AKA; phân cấp khoá K → KAUSF → KSEAF → KAMF → KgNB tính thật bằng HMAC-SHA-256, NAS/AS Security Mode và NEA/NIA 0–3; roaming qua SEPP, N32 (TLS/PRINS) và tường lửa SS7/Diameter/GTP; IPsec/SecGW, chứng thư CMPv2, MACsec fronthaul, toàn vẹn UP; trạm giả, hạ cấp, bão báo hiệu, cách phát hiện, NESAS/SCAS. Có nhật ký bản tin, tham số Huawei, Nokia, Ericsson (cần đối chiếu), KPI và lỗi thường gặp (auth failure, synch failure/AUTS, MAC failure). Chọn mục bên dưới; đổi tình huống để thấy bản tin và kết quả thay đổi.</p>
+    <div class="panel u3navp"><div id="scNav"></div></div>
+    <div id="scBody"></div>
+  </section>
+  <section class="tab" id="t-tx">
+    <p class="lead" id="txLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="txFigT"></h3><p class="hint" id="txHint"></p><div id="txFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="txOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="txCtl"></div></div>
+        <div class="panel" id="txInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="txTblT"></h3><div class="scroll"><table id="txTbl"></table></div></div>
+  </section>
+  <section class="tab" id="t-leo">
+    <p class="lead">Truyền dẫn vệ tinh quỹ đạo thấp (LEO, chòm kiểu Starlink) cho trạm eNB/gNB về lõi EPC/5GC ở nơi khó kéo cáp hoặc viba: kiến trúc toàn trình UE → trạm → router trạm → terminal mảng pha → vệ tinh → gateway/PoP → Internet hoặc kết nối riêng → SeGW (IPsec NAT-T) → lõi, có chòm vệ tinh chuyển động và đổi vệ tinh theo chu kỳ; kênh vệ tinh theo thời gian (hình học, trễ, che khuất, mưa Ku/Ka, nghẽn beam, 120 s và 24 h); S1/NG qua SCTP, IPsec DPD, GTP-U, overhead và MTU, GNSS holdover, VoLTE và TCP qua vệ tinh, bão đăng ký khi hồi phục; định cỡ, dự phòng, nguồn điện, chi phí; trọng tâm là giám sát và kiểm soát dịch vụ toàn trình: dashboard theo đoạn, tương quan cảnh báo, cây RCA, tiêm lỗi có chấm điểm, QoS DSCP và shaping, báo cáo SLA tháng; tham số Huawei, Nokia, Ericsson (cần đối chiếu), KPI và lỗi thường gặp.</p>
+    <div class="panel u3navp"><div id="leoNav"></div></div>
+    <div id="leoBody"></div>
+  </section>
+  <section class="tab" id="t-fw">
+    <p class="lead" id="fwLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="fwFigT"></h3><p class="hint" id="fwHint"></p><div id="fwFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="fwOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="fwCtl"></div></div>
+        <div class="panel" id="fwInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="fwTblT"></h3><div class="scroll"><table id="fwTbl"></table></div></div>
+  </section>
+  <section class="tab" id="t-hx">
+    <p class="lead" id="hxLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="hxFigT"></h3><p class="hint" id="hxHint"></p><div id="hxFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="hxOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="hxCtl"></div></div>
+        <div class="panel" id="hxInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="hxTblT"></h3><div class="scroll"><table id="hxTbl"></table></div></div>
+  </section>
+  <section class="tab" id="t-it">
+    <p class="lead" id="itLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="itFigT"></h3><p class="hint" id="itHint"></p><div id="itFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="itOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="itCtl"></div></div>
+        <div class="panel" id="itInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="itTblT"></h3><div class="scroll"><table id="itTbl"></table></div></div>
+  </section>
+  <section class="tab" id="t-rm">
+    <p class="lead" id="rmLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="rmFigT"></h3><p class="hint" id="rmHint"></p><div id="rmFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="rmOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="rmCtl"></div></div>
+        <div class="panel" id="rmInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="rmTblT"></h3><div class="scroll"><table id="rmTbl"></table></div></div>
+  </section>
+  <section class="tab" id="t-sv">
+    <p class="lead" id="svLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="svFigT"></h3><p class="hint" id="svHint"></p><div id="svFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="svOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="svCtl"></div></div>
+        <div class="panel" id="svInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="svTblT"></h3><div class="scroll"><table id="svTbl"></table></div></div>
+  </section>
+  <section class="tab" id="t-al">
+    <p class="lead" id="alLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="alFigT"></h3><p class="hint" id="alHint"></p><div id="alFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="alOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="alCtl"></div></div>
+        <div class="panel" id="alInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="alTblT"></h3><div class="scroll"><table id="alTbl"></table></div></div>
+  </section>
+
+  <section class="tab" id="t-mob">
+    <p class="lead" id="mbLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="mbFigT"></h3><p class="hint">Chạm vào hình hoặc vào một sự kiện để đặt UE ở vị trí đó.</p><div id="mbFig"></div></div>
+        <div class="panel"><h3>Trạng thái</h3><dl class="kv" id="mbOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và ngưỡng</h3><div class="ctl" id="mbCtl"></div></div>
+        <div class="panel" id="mbInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="mbTblT"></h3><div class="scroll"><table id="mbTbl"></table></div></div>
+  </section>
+
+  <section class="tab" id="t-rsh">
+    <p class="lead" id="rsLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="rsFigT"></h3><div id="rsFig"></div></div>
+        <div class="panel"><h3>Chi tiết</h3><dl class="kv" id="rsOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn nội dung và tham số</h3><div class="ctl" id="rsCtl"></div></div>
+        <div class="panel" id="rsInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="rsTblT"></h3><div class="scroll"><table id="rsTbl"></table></div></div>
+  </section>
+
+  <section class="tab" id="t-frame">
+    <p class="lead" id="frameLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel">
+          <h3 id="tddTitle">Mẫu khe</h3>
+          <p class="hint">Chạm vào một khe để xem lưới tài nguyên của khe đó.</p>
+          <div id="tddStrip"></div>
+          <p class="legend"><span><i style="background:var(--g-pdsch)"></i>Đường xuống (D)</span><span><i style="background:var(--g-gp)"></i>Khoảng bảo vệ</span><span><i style="background:var(--g-pusch)"></i>Đường lên (U)</span></p>
+        </div>
+        <div class="panel">
+          <h3 id="gridTitle">Lưới tài nguyên</h3>
+          <div id="grid"></div>
+          <p class="legend" id="gridLegend"></p>
+          <div id="ssbWarn"></div>
+        </div>
+      </div>
+      <div>
+        <div class="panel"><h3>Numerology và sóng mang</h3><dl class="kv" id="numOut"></dl></div>
+        <div class="panel"><h3>Kênh điều khiển và tín hiệu tham chiếu</h3><div class="ctl" id="frameCtl"></div><dl class="kv" id="ohOut" style="margin-top:12px"></dl></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-prb">
+    <p class="lead" id="prbLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="prbNrTitle"></h3><p class="hint">Chạm vào một cột để xem khe đó cấp cho UE nào, bao nhiêu PRB. Đổi giữa đường xuống và đường lên ở ô "Chiều truyền".</p><div id="prbNr"></div><p class="legend" id="prbNrLeg"></p><p class="note" id="prbNrNote" style="margin:8px 0 0"></p></div>
+        <div class="panel"><h3 id="prbLteTitle"></h3><div id="prbLte"></div><p class="legend" id="prbLteLeg"></p><p class="note" id="prbLteNote" style="margin:8px 0 0"></p></div>
+        <div class="panel" id="prbSlot" aria-live="polite"></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Các UE trong cell</h3><div class="ctl" id="prbCtl" style="margin-bottom:12px"></div><p class="hint">Với mỗi UE, chọn vị trí (quyết định chất lượng kênh), loại lưu lượng và loại máy.</p><div id="ueRows"></div></div>
+        <div class="panel"><h3>Bộ lập lịch đang chia thế nào</h3><div id="prbAlgo"></div></div>
+        <div class="panel"><h3 id="prbTableTitle">Kết quả theo từng UE</h3><div class="scroll"><table id="prbTable"></table></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-ca">
+    <p class="lead" id="caLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3>Các sóng mang đang ghép trên trục tần số</h3><div id="caSpec"></div><p class="legend" id="caLeg"></p></div>
+        <div class="panel"><h3>Tốc độ đường xuống theo khoảng cách tới trạm</h3><div id="caChart"></div><p class="note" id="caChartNote" style="margin:8px 0 0"></p></div>
+        <div class="panel"><h3>Từng sóng mang tại vị trí UE</h3><div class="scroll"><table id="caTable"></table></div></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Chọn các sóng mang để ghép</h3><p class="hint">Mỗi dòng là một sóng mang thành phần: chọn băng tần và băng thông.</p><div id="caRows"></div><div class="ctl" id="caCtl" style="margin-top:12px"></div></div>
+        <div class="panel"><h3>Kết quả ghép sóng mang</h3><dl class="kv" id="caOut"></dl></div>
+        <div class="panel" id="caInfo"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-beam">
+    <p class="lead">Trạm gốc phục vụ nhiều UE cùng lúc theo cách khác nhau ở mỗi thế hệ. Anten Massive MIMO của 5G tạo cho mỗi UE một búp sóng riêng và phát đồng thời trên cùng tần số. Anten của 4G và 3G chỉ có một búp cố định trùm cả sector, nên phải chia UE theo tần số, thời gian hoặc mã. Chọn công nghệ rồi bấm Chạy tự động để xem.</p>
+    <div class="cols">
+      <div>
+        <div class="panel">
+          <h3>Anten và các búp sóng tới từng UE</h3>
+          <p class="hint">Kéo trên hình để xoay. Mỗi màu là một UE; búp sóng cùng màu là chùm đang phát cho UE đó.</p>
+          <div id="antBox"><canvas id="antCv" role="img" aria-label="Cảnh ba chiều: cột anten, các UE và búp sóng"></canvas></div>
+          <div class="row"><button class="btn pri" type="button" data-cam="far">Toàn cảnh</button><button class="btn" type="button" data-cam="near">Nhìn gần anten</button></div>
+          <p id="antCap" style="margin:10px 0 0;font-size:13.5px" aria-live="polite"></p>
+        </div>
+        <div class="panel"><h3>Từng UE</h3><div class="scroll"><table id="antUe"></table></div></div>
+        <div class="panel">
+          <h3>Hình dạng một búp sóng: độ lợi theo mọi hướng</h3>
+          <p class="hint">Kéo trên hình để xoay. Bề mặt càng xa tâm và càng đỏ thì độ lợi theo hướng đó càng cao. Lái chùm bằng các thanh trượt bên cạnh.</p>
+          <div id="beamBox"><canvas id="beamCv" role="img" aria-label="Búp sóng ba chiều của mảng anten"></canvas></div>
+          <div class="row"><button class="btn" type="button" data-bv="38,22">Nhìn chéo</button><button class="btn" type="button" data-bv="0,89">Nhìn từ trên</button><button class="btn" type="button" data-bv="90,0">Nhìn từ bên</button><button class="btn" type="button" data-bv="0,0">Nhìn từ sau anten</button></div>
+        </div>
+        <div class="panel"><h3>Hai mặt cắt của búp sóng</h3><div id="beamCutH"></div><div id="beamCutV" style="margin-top:10px"></div><p class="note" style="margin:8px 0 0">Đường đứt là mức thấp hơn đỉnh 3 dB; khoảng giữa hai giao điểm là độ rộng chùm.</p></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Trạm và các UE</h3><div class="ctl" id="antCtl"></div><dl class="kv" id="antOut" style="margin-top:12px"></dl></div>
+        <div class="panel" id="antWhy"></div>
+        <div class="panel"><h3>Lái một búp sóng</h3><div class="ctl" id="beamCtl"></div><dl class="kv" id="beamOut" style="margin-top:12px"></dl></div>
+        <div class="panel"><h3>Beamforming hoạt động thế nào</h3><div id="beamHow"></div></div>
+        <div class="panel"><h3>So sánh các loại anten</h3><div class="scroll"><table id="beamTable"></table></div><p class="note" id="beamNote" style="margin:10px 0 0"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-es">
+    <p class="lead">Khối vô tuyến chiếm phần lớn điện của trạm, và phần lớn thời gian trong ngày cell chạy xa dưới công suất tối đa. Các tính năng tiết kiệm điện xếp thành tầng: tắt theo từng ký hiệu, dồn dữ liệu, hạ công suất, tắt bớt nhánh phát, tắt sóng mang, rồi ngủ sâu. Tầng càng sâu thì tiết kiệm càng nhiều nhưng ảnh hưởng dịch vụ càng lớn. <span id="esSrc"></span></p>
+    <div class="cols">
+      <div>
+        <div class="panel">
+          <h3>Công suất tiêu thụ của một cell trong 24 giờ</h3>
+          <p class="hint">Chạm vào một giờ để xem cell đang ở trạng thái nào và vì sao.</p>
+          <div id="esChart"></div>
+          <p class="legend" id="esLeg"></p>
+        </div>
+        <div class="panel"><h3 id="esHourTitle">Giờ đang chọn</h3><dl class="kv" id="esHour"></dl><div id="esWarn"></div></div>
+        <div class="panel"><h3>Kết quả cả ngày</h3><dl class="kv" id="esDay"></dl></div>
+        <div class="panel"><h3>Mô hình so với kết quả thử nghiệm trong tài liệu</h3><div class="scroll"><table id="esCmp"></table></div><p class="note" id="esCmpNote" style="margin:10px 0 0"></p></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Tải và chi phí</h3><div class="ctl" id="esCtl"></div></div>
+        <div class="panel"><h3 id="esFeatTitle">Các tính năng</h3><p class="hint">Bật hoặc tắt từng tính năng; mở phần chi tiết để chỉnh tham số theo đúng tên trong tài liệu.</p><div id="esFeat"></div></div>
+        <div class="panel"><h3>Lệnh và tham số cấu hình</h3><pre class="code" id="esScript"></pre><p class="note" style="margin:8px 0 0">Sinh theo các tính năng đang bật và giá trị đang đặt. Định danh cell và trạm là số ví dụ.</p></div>
+        <div class="panel"><h3>Ba vendor xếp theo từng tầng</h3><div class="scroll"><table id="esVendor"></table></div><p class="note" style="margin:10px 0 0">Tên tính năng và số liệu lấy từ các tài liệu đã cung cấp. Tài liệu của Huawei thử trên cả LTE và NR, của Nokia trên NR ở Gò Vấp và Củ Chi; tài liệu của Ericsson chưa có kết quả đo. Xem thủ tục tắt và đánh thức cell ở thẻ Báo hiệu.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-sig">
+    <p class="lead" id="sigLead"></p>
+    <div class="cols">
+      <div class="panel" style="order:2">
+        <div class="scroll" id="seq"></div>
+      </div>
+      <div style="order:1">
+        <div class="panel">
+          <div class="ctl" id="sigCtl"></div>
+          <div class="row"><button class="btn pri" id="sgPlay" type="button">Chạy tự động</button><button class="btn" id="sgNext" type="button">Tiến một bước</button><button class="btn" id="sgPrev" type="button">Lùi một bước</button><button class="btn" id="sgFirst" type="button">Về đầu</button></div>
+          <div class="prog" role="presentation"><div id="sgBar"></div></div>
+        </div>
+        <div class="panel" id="sigStep" aria-live="polite"></div>
+        <div class="panel"><h3>Giải mã bản tin</h3><p class="hint">Nội dung bản tin của bước đang chọn, bóc từng lớp như trên máy phân tích giao thức.</p><div id="sigDec"></div></div>
+        <div class="panel">
+          <h3>Bản tin này đi qua những nút nào</h3>
+          <div id="topo"></div>
+          <p id="topoHops" style="margin:8px 0 0;font-size:13.5px"></p>
+          <p class="legend"><span><i style="background:var(--cp)"></i>Báo hiệu</span><span><i style="background:var(--sip)"></i>SIP</span><span><i style="background:var(--up)"></i>Thoại, dữ liệu</span><span><i style="background:var(--lte)"></i>Tính cước</span></p>
+        </div>
+        <div class="panel"><h3>Các khối đang xử lý bước này</h3><div id="sigBlocks"></div></div>
+        <div class="panel" id="sigEx"></div>
+        <div class="panel">
+          <h3>Nhật ký bản tin đã chạy</h3>
+          <p class="hint">Cột trái là thời điểm tính từ đầu thủ tục, theo độ trễ điển hình của mạng thật. Chạm vào một dòng để quay lại bước đó.</p>
+          <ol id="sigLog"></ol>
+          <dl class="kv" id="sigKpi" style="margin-top:12px"></dl>
+        </div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="mechTitle">Các cơ chế di động</h3><div class="scroll"><table id="mechTable"></table></div></div>
+    <div class="cols">
+      <div class="panel"><h3>Sự kiện đo mà UE báo cáo</h3><div class="scroll"><table id="evtTable"></table></div></div>
+      <div class="panel"><h3>Ý nghĩa các loại bản tin</h3><div class="scroll"><table id="protoTable"></table></div></div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-stack">
+    <p class="lead" id="stackLead"></p>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3>Các lớp giao thức và nơi chúng chạy</h3><div class="stk" id="stk"></div></div>
+        <div class="panel"><h3>Một gói IP đi xuống qua các lớp</h3><div class="pdu" id="pdu"></div><p class="note" style="margin:8px 0 0">Mỗi lớp thêm tiêu đề của mình (ô đậm). MAC ghép nhiều RLC PDU vào một khối truyền tải; PHY thêm CRC, mã hoá LDPC rồi điều chế lên lưới tài nguyên.</p></div>
+      </div>
+      <div>
+        <div class="panel" id="stkInfo" aria-live="polite"></div>
+        <div class="panel"><h3>Băng thông fronthaul cần cho cell này</h3><dl class="kv" id="fhOut"></dl><p class="note" id="fhNote" style="margin:10px 0 0"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-ml">
+    <p class="lead" id="mlLead"></p>
+    <div class="panel" id="mlNavP"><div id="mlNav"></div></div>
+    <div class="cols">
+      <div>
+        <div class="panel"><h3 id="mlFigT"></h3><p class="hint" id="mlHint"></p><div id="mlFig"></div></div>
+        <div class="panel"><h3>Tóm tắt</h3><dl class="kv" id="mlOut"></dl></div>
+      </div>
+      <div>
+        <div class="panel"><h3>Tham số</h3><div class="ctl" id="mlPar"></div></div>
+        <div class="panel" id="mlInfo"></div>
+      </div>
+    </div>
+    <div class="panel"><h3 id="mlTblT"></h3><div class="scroll"><table id="mlTbl"></table></div></div>
+  </section>
+
+  <section class="tab" id="t-vendor">
+    <p class="lead">Ba vendor đều tuân theo cùng chuẩn 3GPP ở giao diện vô tuyến, nên nguyên lý ở các thẻ khác giống nhau. Khác biệt nằm ở tên thiết bị, công cụ vận hành, mô hình đối tượng và tên tham số.</p>
+    <div class="panel"><div class="scroll"><table id="vTable"></table></div></div>
+    <div class="panel">
+      <h3 id="cfgTitle">Cấu hình mẫu</h3>
+      <p class="hint">Sinh từ các tham số bạn đang chọn. Đổi băng tần, băng thông, mẫu TDD hay ngưỡng di động rồi quay lại đây để xem cấu hình thay đổi.</p>
+      <pre class="code" id="cfg"></pre>
+    </div>
+    <div class="panel"><h3>Tên tham số tương ứng</h3><div class="scroll"><table id="pTable"></table></div></div>
+  </section>
+</div></main>
+
+<footer><div class="wrap">
+  <p class="copy">© 2026 <b>duc.lexuan</b>. Trình mô phỏng mạng di động 5G, 4G, 3G. Tác giả: duc.lexuan. Vui lòng ghi rõ tên tác giả khi chia sẻ hoặc trích dẫn.</p>
+  <p>Mô hình ở đây đã được đơn giản hoá để học nguyên lý: suy hao theo 3GPP TR 38.901 (không có fading), ánh xạ SINR sang CQI và hạng MIMO là xấp xỉ, tốc độ đỉnh theo TS 38.306. Không dùng thay cho công cụ quy hoạch.</p>
+  <p>Tên thiết bị, MO và tham số của Huawei, Nokia, Ericsson được ghi theo cách gọi thường gặp, có thể khác giữa các phiên bản phần mềm. Hãy đối chiếu tài liệu tham số của đúng release trước khi áp dụng lên mạng thật.</p>
+</div></footer>
+<script src="./assets/js/simulator-01.js"></script>
+<script src="./assets/js/simulator-02.js"></script>
+
+<link rel="stylesheet" href="./assets/css/complete-02.css">
+<script src="./assets/js/simulator-03.js"></script>
+<script src="./assets/js/simulator-04.js"></script>
+<script src="./assets/js/simulator-05.js"></script>
+<script src="./assets/js/simulator-06.js"></script>
+<script src="./assets/js/simulator-07.js"></script>
+<script src="./assets/js/simulator-08.js"></script>
+<script src="./assets/js/simulator-09.js"></script>
+<style id="lbCss">
+/* ===== Thẻ Đa lớp tần số và cân bằng tải (lb) ===== */
+.lbmap{max-width:860px;margin:0 auto}
+.lbw{min-width:560px}
+.lbchips{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.lbchip{font:600 12px var(--sans);border-radius:99px;padding:2px 9px;border:1.5px solid currentColor;background:var(--panel2)}
+.lbchip.off{opacity:.38;text-decoration:line-through}
+.lbtb td,.lbtb th{font-size:12.8px;white-space:nowrap}
+.lbtb td:first-child{white-space:normal}
+.lbtb tr.lbsel td{background:color-mix(in srgb,var(--up) 10%,transparent)}
+.lbpri{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px 12px}
+.lbsite{fill:var(--panel);stroke:var(--ink);stroke-width:1.4}
+.lbue{stroke:var(--panel);stroke-width:.6}
+.lbue.off{opacity:.16}
+.lbtxt{font:600 11px var(--sans);fill:var(--ink);paint-order:stroke;stroke:var(--panel);stroke-width:3px}
+.lbsm{font:500 10px var(--sans);fill:var(--muted)}
+.lbgood{color:var(--k1);font-weight:700}.lbbad{color:var(--warn);font-weight:700}
+#t-lb details>summary{cursor:pointer}
+#t-lb input[type=number],#t-lb input[type=search]{font:500 13.5px var(--sans);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);width:100%;box-sizing:border-box}
+@media(max-width:600px){.lbw{min-width:480px}}
+</style>
+<script src="./assets/js/simulator-10.js"></script>
+
+<style id="sfCss">
+/* ===== Thẻ Hiệu quả tần số tại một trạm (sf) ===== */
+.sfw{min-width:560px}
+.sftx{font:600 11.5px var(--sans);fill:var(--ink);paint-order:stroke;stroke:var(--panel);stroke-width:3px}
+.sfsm{font:500 10.5px var(--sans);fill:var(--muted)}
+.sfcv{display:block;width:100%;height:auto;border-radius:6px;margin:2px 0 8px;background:var(--panel)}
+.sfgh{font-size:13px;margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.sftb td,.sftb th{font-size:12.6px;white-space:nowrap}
+.sftb td:first-child{white-space:normal;min-width:150px}
+.sftb select{font:500 12.5px var(--sans);padding:3px 4px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink);max-width:190px}
+.sftb tr.sfsel td{background:color-mix(in srgb,var(--up) 10%,transparent)}
+.sftb tr.sfoff td{opacity:.55}
+.sfsub{flex-wrap:wrap}
+#t-sf details>summary{cursor:pointer}
+#t-sf input[type=number],#t-sf input[type=search]{font:500 13.5px var(--sans);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);width:100%;box-sizing:border-box}
+@media(max-width:600px){.sfw{min-width:480px}}
+</style>
+<script src="./assets/js/simulator-11.js"></script>
+<style id="pnCss">
+/* ===== Thẻ Mạng riêng 5G (pn) ===== */
+.pnw{min-width:620px}
+.pnsvg{display:block;width:100%;height:auto}
+.pnfig{max-width:920px}
+.pnlad svg{max-width:860px}
+#t-pn .pnsvg .sftx{font-size:12px}
+#t-pn .pnnd{cursor:pointer}
+#t-pn .pnnd:focus-visible rect{stroke:var(--warn)!important;stroke-width:3px}
+#t-pn .pnhl{background:color-mix(in srgb,var(--up) 12%,transparent)}
+.pnpre{font-size:11.6px;line-height:1.45;max-height:300px;overflow:auto;white-space:pre}
+.pncv{cursor:grab;touch-action:none;max-width:600px}
+.pnstk{display:flex;height:18px;border-radius:6px;overflow:hidden;border:1px solid var(--line);margin:4px 0}
+.pnstk i{display:block;height:100%}
+.pnbar{display:inline-block;width:120px;height:8px;border-radius:4px;background:var(--line);vertical-align:middle;overflow:hidden}
+.pnbar i{display:block;height:100%;background:var(--up)}
+#t-pn input[type=number],#t-pn input[type=search]{font:500 13.5px var(--sans);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);width:100%;box-sizing:border-box}
+#t-pn details>summary{cursor:pointer}
+#t-pn .ndpr-NAS{background:#7B6CE0;color:#fff}#t-pn .ndpr-IKE{background:#C98A1E;color:#fff}
+@media(max-width:600px){.pnw{min-width:540px}}
+</style>
+<script src="./assets/js/simulator-12.js"></script>
+
+<style id="nslCss">
+/* ===== Thẻ Network slicing, QoS và tính cước (nsl) ===== */
+.nslw{min-width:600px;max-width:760px}
+.nslsvg{display:block;width:100%;height:auto}
+#t-nsl .nslsvg .sftx{font-size:12px}
+.nsldot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.nslbytes{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.nslby{display:inline-flex;flex-direction:column;align-items:center;min-width:52px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;font:600 14px var(--mono);background:var(--panel)}
+.nslby small{font:500 10.5px var(--sans);color:var(--muted)}
+.nslby.nsll{border-style:dashed}.nslby.nslh{border-color:var(--lte)}
+#t-nsl .nslhl,#t-nsl tr.nslhl td{background:color-mix(in srgb,var(--up) 12%,transparent)}
+.nsllife{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.nsllife span{padding:3px 8px;border-radius:12px;border:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.nsllife span.done{color:var(--ink)}
+.nsllife span.on{border-color:var(--warn);color:var(--ink);background:color-mix(in srgb,var(--warn) 14%,transparent)}
+.nslstk{display:flex;height:20px;border-radius:6px;overflow:hidden;border:1px solid var(--line);margin:2px 0 8px;background:color-mix(in srgb,var(--line) 25%,transparent)}
+.nslstk i{display:block;height:100%}
+.nslstk i.nslwaste{background:repeating-linear-gradient(45deg,var(--line) 0 4px,transparent 4px 8px)}
+.nslpol{display:flex;align-items:center;gap:10px;margin:6px 0}
+.nslpol>span{width:90px;flex:none;font-size:13px}
+.nslpb{position:relative;flex:1;height:16px;border-radius:5px;background:color-mix(in srgb,var(--line) 35%,transparent);overflow:hidden}
+.nslpb i{position:absolute;top:0;height:100%;box-sizing:border-box}
+.nslpb i.d{left:0}.nslpb i.m{opacity:.4}.nslpb i.x{border:2px dashed;background:none;border-radius:4px}
+.nslrt td{vertical-align:top;min-width:120px}.nslrt label.c{margin:0}
+.nslcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.nslcard{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:8px;padding:8px 10px;background:var(--panel)}
+.nslcard p{margin:6px 0 0;font-size:13.2px;line-height:1.5}
+#t-nsl input[type=number],#t-nsl input[type=search],#t-nsl input[type=text]{font:500 13.5px var(--sans);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);width:100%;box-sizing:border-box}
+#t-nsl input[type=text]{font-family:var(--mono);text-transform:uppercase}
+#t-nsl details>summary{cursor:pointer}
+#t-nsl dd,#t-nsl .e2d,#t-nsl .note,#t-nsl td{overflow-wrap:anywhere}
+#t-nsl .ndpr-NAS{background:#7B6CE0;color:#fff}#t-nsl .ndpr-SBI{background:#1E8E7E;color:#fff}#t-nsl .ndpr-PFCP{background:#B5651D;color:#fff}#t-nsl .ndpr-EAP{background:#C98A1E;color:#fff}
+.nslpnp{padding:6px 10px}.nslpnp .sclkbar{margin:0}
+@media(max-width:600px){.nslw{min-width:520px}.nslpol>span{width:64px}}
+</style>
+<script src="./assets/js/simulator-13.js"></script>
+<style id="udmCss">
+/* ===== Thẻ UDM và dữ liệu thuê bao (udm) ===== */
+.udxw{min-width:620px;max-width:780px}
+.udxsvg{display:block;width:100%;height:auto}
+.udxtx{fill:var(--ink);font:600 12px var(--sans)}
+.udxsm{fill:var(--muted);font:500 10.5px var(--sans)}
+.udxif{fill:var(--muted);font:500 9.5px var(--mono)}
+.udxn rect{fill:var(--panel);stroke:var(--line);stroke-width:1.4}
+.udxn.on rect{stroke:var(--warn);stroke-width:2.4}
+.udxn.dim{opacity:.28}
+.udxn.dead rect{stroke:#E5484D;stroke-dasharray:5 3}
+.udxe{stroke:var(--line);stroke-width:1.3;fill:none}
+.udxe.on{stroke:var(--warn);stroke-width:2.4}
+.udxe.dim{opacity:.25}
+.udxe.dsh{stroke-dasharray:5 4}
+.udxdot{fill:var(--warn)}
+.udxrep{fill:var(--nr)}
+#t-udm .ndpr-NAS{background:#7B6CE0;color:#fff}#t-udm .ndpr-SBI{background:#1E8E7E;color:#fff}#t-udm .ndpr-DIA{background:#B5651D;color:#fff}
+#t-udm .ndpr-OAM{background:#5A6B85;color:#fff}#t-udm .ndpr-SIP{background:#C98A1E;color:#fff}#t-udm .ndpr-GTPv2{background:#2F6FB5;color:#fff}
+.udxjs{font:500 12.5px/1.5 var(--mono);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:6px 0;white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto}
+.udxjs .k{color:var(--acc)}.udxjs .s{color:var(--lte)}.udxjs .n{color:var(--warn)}
+.udxtwo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.udxres td.ok{color:var(--up)}.udxres td.no{color:#E5484D}.udxres td.mid{color:var(--warn)}
+.udxst{display:inline-block;padding:2px 8px;border-radius:10px;border:1px solid var(--line);font-size:12.5px}
+.udxst.act{border-color:var(--up)}.udxst.odb,.udxst.lock{border-color:var(--warn)}.udxst.del{border-color:#E5484D}
+.udxbig{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.udxbig div{border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--panel)}
+.udxbig b{display:block;font:700 18px var(--sans)}.udxbig span{font-size:12px;color:var(--muted)}
+#t-udm input[type=number],#t-udm input[type=search]{font:500 13.5px var(--sans);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);width:100%;box-sizing:border-box}
+#t-udm details>summary{cursor:pointer}
+#t-udm dd,#t-udm .e2d,#t-udm .note,#t-udm td{overflow-wrap:anywhere}
+.udxpnp{padding:6px 10px}.udxpnp .sclkbar{margin:0}
+@media(max-width:600px){.udxw{min-width:540px}}
+</style>
+<script src="./assets/js/simulator-14.js"></script>
+<style id="leoCss">
+/* ===== Thẻ Truyền dẫn vệ tinh LEO (leo) ===== */
+.stlw{min-width:640px;max-width:1000px}
+.stlwn{min-width:560px;max-width:820px}
+.stlsvg{display:block;width:100%;height:auto}
+.stltx{fill:var(--ink);font:600 12px var(--sans)}
+.stlsm{fill:var(--muted);font:500 10.5px var(--sans)}
+.stlmo{fill:var(--muted);font:500 9.5px var(--mono)}
+.stln rect,.stln circle{fill:var(--panel);stroke:var(--line);stroke-width:1.4}
+.stln{cursor:pointer}
+.stln.on rect,.stln.on circle{stroke:var(--warn);stroke-width:2.4}
+.stln.bad rect,.stln.bad circle{stroke:#E5484D;stroke-width:2.4}
+.stle{stroke:var(--line);stroke-width:1.4;fill:none}
+.stle.on{stroke:var(--acc);stroke-width:2.2}
+.stle.dsh{stroke-dasharray:5 4}
+.stle.bad{stroke:#E5484D;stroke-dasharray:4 3}
+.stldot{fill:var(--warn)}
+.stlsat{fill:var(--acc)}
+.stlsat.srv{fill:var(--warn)}
+.stlsat.obs{fill:#E5484D}
+.stlearth{fill:color-mix(in srgb,var(--acc) 10%,var(--panel));stroke:var(--line);stroke-width:1.2}
+.stlorb{fill:none;stroke:var(--line);stroke-dasharray:3 4;stroke-width:1}
+.stlbeam{stroke:var(--warn);stroke-width:2;fill:none}
+.stlisl{stroke:#B48CF2;stroke-width:2;fill:none;stroke-dasharray:6 3}
+.stlfoot{fill:var(--warn);opacity:.13}
+.stlobs{fill:#E5484D;opacity:.28;cursor:pointer}
+.stlobs0{fill:transparent;cursor:pointer}
+.stlring{fill:none;stroke:var(--line);stroke-width:1}
+.stlbig{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:8px 0}
+.stlbig div{border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--panel)}
+.stlbig b{display:block;font:700 18px var(--sans)}.stlbig span{font-size:12px;color:var(--muted)}
+.stltwo{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.stlseg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin:8px 0}
+.stlseg button{text-align:left;border:1px solid var(--line);border-left:5px solid var(--up);border-radius:8px;background:var(--panel);color:var(--ink);padding:6px 8px;font:500 12.5px var(--sans);cursor:pointer;min-width:0}
+.stlseg button b{display:block;font-size:12.5px;overflow-wrap:anywhere}
+.stlseg button span{display:block;color:var(--muted);font-size:11.5px;overflow-wrap:anywhere}
+.stlseg button.warn{border-left-color:var(--warn)}.stlseg button.crit{border-left-color:#E5484D}.stlseg button.unk{border-left-color:var(--muted)}
+.stlseg button[aria-pressed="true"]{outline:2px solid var(--acc)}
+.stlst{display:inline-block;padding:1px 8px;border-radius:10px;border:1px solid var(--line);font-size:12px}
+.stlst.ok{border-color:var(--up);color:var(--up)}.stlst.warn{border-color:var(--warn);color:var(--warn)}.stlst.crit{border-color:#E5484D;color:#E5484D}
+.stlout{font:500 12.5px/1.5 var(--mono);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:6px 0;white-space:pre-wrap;overflow-wrap:anywhere;max-height:300px;overflow:auto}
+.stlalm{list-style:none;padding:0;margin:6px 0}
+.stlalm li{border:1px solid var(--line);border-radius:6px;padding:4px 8px;margin:4px 0;font-size:12.5px;overflow-wrap:anywhere}
+.stlalm li.root{border-color:#E5484D}.stlalm li.chi{margin-left:18px;opacity:.85}
+.stlalm .sv{display:inline-block;min-width:58px;font-weight:700}
+.stlalm .sv.Critical{color:#E5484D}.stlalm .sv.Major{color:var(--warn)}.stlalm .sv.Minor{color:var(--acc)}
+.stltree,.stltree ul{list-style:none;padding-left:16px;margin:4px 0}
+.stltree li{margin:3px 0;font-size:13px;overflow-wrap:anywhere}
+.stltree li>span{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.stltree li.hit>span{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 14%,transparent)}
+.stltree li.leaf>span{font-weight:600}
+.stlbar{display:flex;height:22px;border-radius:5px;overflow:hidden;border:1px solid var(--line);margin:6px 0}
+.stlbar i{display:block;height:100%;font:600 10px/22px var(--sans);color:#fff;text-align:center;overflow:hidden;white-space:nowrap}
+.stlscore{font:700 22px var(--sans)}
+.stlok{color:var(--up)}.stlno{color:#E5484D}.stlmid{color:var(--warn)}
+#t-leo .ndpr-SCTP{background:#2F6FB5;color:#fff}#t-leo .ndpr-IKE{background:#7B6CE0;color:#fff}#t-leo .ndpr-GTP{background:#1E8E7E;color:#fff}
+#t-leo .ndpr-S1AP,#t-leo .ndpr-NGAP{background:#B5651D;color:#fff}#t-leo .ndpr-SIP{background:#C98A1E;color:#fff}#t-leo .ndpr-LINK{background:#E5484D;color:#fff}
+#t-leo .ndpr-OAM{background:#5A6B85;color:#fff}#t-leo .ndpr-RRC{background:#3D8B37;color:#fff}
+#t-leo input[type=number],#t-leo input[type=search]{font:500 13.5px var(--sans);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);width:100%;box-sizing:border-box}
+#t-leo details>summary{cursor:pointer}
+#t-leo dd,#t-leo .e2d,#t-leo .note,#t-leo td{overflow-wrap:anywhere}
+.stlpnp{padding:6px 10px}.stlpnp .sclkbar{margin:0}
+@media(max-width:600px){.stlw{min-width:600px}.stlwn{min-width:520px}}
+</style>
+<script src="./assets/js/simulator-15.js"></script>
+<style id="gxTheme">
+/* ===== Giao diện công nghệ: xanh thiên hà (đợt 13) ===== */
+:root{--acc:#0A74C9;--acc2:#2BA3E8;--glow:rgba(10,116,201,.22);--glass:rgba(255,255,255,.86);--edge:rgba(10,116,201,.18);--ease:cubic-bezier(.2,.8,.2,1)}
+:root[data-theme="light"],:root:not([data-theme]){
+  --bg:#EEF4FB;--panel:#FFFFFF;--panel2:#F2F7FD;--ink:#0B2545;--muted:#52667F;--line:#C9D7E8;--up:#0A74C9;--k2:#0A74C9;--u1:#0A74C9;
+}
+:root[data-theme="dark"]{
+  --bg:#040B1A;--panel:#0A1A33;--panel2:#0F2443;--ink:#E3F0FF;--muted:#8EA6C4;--line:#1D3A63;
+  --cp:#FF6FC8;--up:#3FC5FF;--sip:#B79CFF;--k1:#33E0A8;--k2:#3FC5FF;--k3:#FF6FC8;--k4:#FFB547;--u1:#3FC5FF;--u2:#FFB547;--u3:#33E0A8;--u4:#FF6FC8;--u5:#B79CFF;--u6:#9DB4CF;--nr:#33E0A8;--nr2:#178A6A;--lte:#FFB547;--lte2:#9C6E1E;--warn:#FF7A66;
+  --g-pdsch:#1F5D96;--g-pdcch:#9C7BEA;--g-ssb:#33E0A8;--g-gp:#21385A;--g-pusch:#8A5A2B;--g-pucch:#F08552;--g-srs:#D8B43A;
+  --acc:#3FC5FF;--acc2:#7FDBFF;--glow:rgba(63,197,255,.32);--glass:rgba(5,14,32,.80);--edge:rgba(63,197,255,.18);
+}
+html{background:var(--bg)}
+body{background:var(--bg)}
+:root[data-theme="dark"] body{background:
+  radial-gradient(1100px 520px at 50% -8%,rgba(36,120,255,.30),transparent 62%),
+  radial-gradient(800px 480px at 105% 25%,rgba(0,200,255,.10),transparent 60%),
+  radial-gradient(760px 560px at -5% 85%,rgba(120,70,255,.11),transparent 60%),var(--bg);background-attachment:fixed}
+:root[data-theme="light"] body{background:radial-gradient(1000px 420px at 50% -10%,rgba(43,163,232,.16),transparent 62%),var(--bg);background-attachment:fixed}
+/* nền sao trôi chậm (chỉ giao diện tối) */
+.gx-sky{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+:root[data-theme="light"] .gx-sky{opacity:.0}
+.gx-sky i{position:absolute;inset:-50%;background-repeat:repeat;animation:gxDrift 160s linear infinite}
+.gx-sky i:nth-child(1){background-image:radial-gradient(1px 1px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 120px 80px,#bfe6ff,transparent),radial-gradient(1.2px 1.2px at 200px 160px,#fff,transparent),radial-gradient(1px 1px at 60px 190px,#9fd8ff,transparent);background-size:240px 240px;opacity:.55}
+.gx-sky i:nth-child(2){background-image:radial-gradient(1.6px 1.6px at 80px 120px,#fff,transparent),radial-gradient(1.4px 1.4px at 300px 40px,#a8e0ff,transparent);background-size:420px 420px;opacity:.45;animation-duration:240s;animation-direction:reverse}
+.gx-sky i:nth-child(3){inset:-20%;background:radial-gradient(closest-side,rgba(63,197,255,.10),transparent);width:60vmax;height:60vmax;left:60%;top:-10%;animation:gxPulse 12s ease-in-out infinite}
+@keyframes gxDrift{to{transform:translate3d(-240px,-120px,0)}}
+@keyframes gxPulse{50%{opacity:.4;transform:scale(1.15)}}
+/* đầu trang kiểu hero */
+.top{position:relative;overflow:hidden;padding:28px 16px 18px}
+.top .wrap{position:relative;z-index:1}
+.top h1{background:linear-gradient(92deg,var(--ink) 10%,var(--acc) 55%,var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+:root[data-theme="dark"] .top h1{background:linear-gradient(92deg,#FFFFFF 5%,#9BE3FF 50%,#3FC5FF);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 18px rgba(63,197,255,.25))}
+.hero-fx{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-fx svg{position:absolute;right:-40px;top:-20px;width:min(640px,80vw);height:auto;opacity:.75}
+:root[data-theme="light"] .hero-fx svg{opacity:.45}
+.hero-fx .ring{fill:none;stroke:var(--acc);stroke-width:1.2;opacity:.35;transform-origin:320px 160px;animation:gxSpin 60s linear infinite}
+.hero-fx .ring.r2{opacity:.22;animation-duration:90s;animation-direction:reverse;stroke-dasharray:4 10}
+.hero-fx .wave{fill:none;stroke:var(--acc);stroke-width:1.6;stroke-linecap:round;opacity:0;animation:gxWave 4s ease-out infinite}
+.hero-fx .wave:nth-of-type(2){animation-delay:1.3s}.hero-fx .wave:nth-of-type(3){animation-delay:2.6s}
+.hero-fx .tower{fill:var(--acc)}
+@keyframes gxSpin{to{transform:rotate(360deg)}}
+@keyframes gxWave{0%{opacity:.85;transform:scale(.4)}100%{opacity:0;transform:scale(1.6)}}
+.hero-fx .wave{transform-origin:520px 150px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.hero-stats span{display:inline-flex;align-items:baseline;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid var(--edge);background:color-mix(in srgb,var(--panel) 70%,transparent);font-size:12.5px;color:var(--muted);transition:border-color .25s,box-shadow .25s,transform .25s var(--ease)}
+.hero-stats span:hover{border-color:var(--acc);box-shadow:0 0 18px var(--glow);transform:translateY(-2px)}
+.hero-stats b{font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
+/* thanh trên kiểu kính */
+.bar{background:var(--glass);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--edge)}
+.bar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--acc),transparent);opacity:.7}
+.seg{border-color:color-mix(in srgb,var(--acc) 55%,var(--line))!important;border-radius:9px;background:color-mix(in srgb,var(--panel) 60%,transparent)}
+.seg button{transition:background .2s,color .2s,box-shadow .2s}
+.seg button+button{border-left-color:color-mix(in srgb,var(--acc) 40%,var(--line))!important}
+.seg button:hover{background:color-mix(in srgb,var(--acc) 14%,transparent)}
+.seg button[aria-pressed="true"]{background:linear-gradient(135deg,#1A6FE0,var(--acc));color:#fff;box-shadow:0 0 14px var(--glow)}
+:root[data-theme="dark"] .seg button[aria-pressed="true"]{background:linear-gradient(135deg,#1E7BFF,#3FC5FF);color:#03122A}
+.u3seg button{border-color:color-mix(in srgb,var(--acc) 50%,var(--line))!important}
+.tabs button,.tabs .tgh{transition:color .2s,border-color .25s,text-shadow .25s}
+.tabs .tgh:hover{color:var(--ink);border-bottom-color:color-mix(in srgb,var(--acc) 50%,transparent)}
+.tgrp.cur>.tgh{border-bottom-color:var(--acc)!important;color:var(--ink)}
+:root[data-theme="dark"] .tgrp.cur>.tgh{text-shadow:0 0 12px rgba(63,197,255,.55)}
+.tdrop{background:color-mix(in srgb,var(--panel) 96%,transparent);border-color:var(--edge);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 18px 40px rgba(0,0,0,.35),0 0 0 1px var(--edge)}
+.tgrp.open>.tdrop,.tgrp:hover:not(.shut)>.tdrop{animation:gxDrop .18s var(--ease)}
+@keyframes gxDrop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.tabs .tdrop button{transition:background .15s,padding-left .2s var(--ease)}
+.tabs .tdrop button:hover{padding-left:14px;background:color-mix(in srgb,var(--acc) 12%,transparent)}
+.tabs .tdrop button[aria-selected="true"]{box-shadow:inset 3px 0 0 var(--acc)}
+.tarr{transition:border-color .2s,box-shadow .2s}.tarr:hover:not(:disabled){border-color:var(--acc);box-shadow:0 0 10px var(--glow)}
+/* khung nội dung */
+.panel,details.cell{transition:border-color .3s,box-shadow .3s}
+:root[data-theme="dark"] .panel,:root[data-theme="dark"] details.cell{background:linear-gradient(180deg,rgba(15,38,72,.78),rgba(8,22,46,.82));border-color:rgba(63,197,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 10px 28px rgba(0,0,0,.22)}
+:root[data-theme="light"] .panel,:root[data-theme="light"] details.cell{box-shadow:0 1px 2px rgba(11,37,69,.04),0 8px 24px rgba(11,37,69,.05)}
+@media (hover:hover){
+  .panel:hover,details.cell:hover{border-color:color-mix(in srgb,var(--acc) 45%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--acc) 18%,transparent),0 12px 34px var(--glow)}
+  .btn:hover:not(:disabled),.u3gr:hover{transform:translateY(-1px);box-shadow:0 6px 16px var(--glow);border-color:var(--acc)}
+  tbody tr{transition:background .15s}
+  tbody tr:hover td{background:color-mix(in srgb,var(--acc) 7%,transparent)}
+  .chip{transition:border-color .2s,box-shadow .2s}.chip:hover{border-color:var(--acc);box-shadow:0 0 10px var(--glow)}
+  svg [role="button"],svg .nd,svg .u3nd,svg .kpN{transition:filter .2s}
+  svg [role="button"]:hover,svg .nd:hover,svg .u3nd:hover,svg .kpN:hover{filter:drop-shadow(0 0 6px var(--glow))}
+}
+.btn{transition:transform .18s var(--ease),box-shadow .2s,border-color .2s,background .2s;border-color:color-mix(in srgb,var(--acc) 50%,var(--ink))}
+.btn.pri{background:linear-gradient(135deg,#1A6FE0,var(--acc));border-color:transparent;color:#fff}
+:root[data-theme="dark"] .btn.pri{color:#03122A}
+.btn:active:not(:disabled){transform:translateY(0) scale(.98)}
+input[type=range]{accent-color:var(--acc)}
+select,input[type=search],input[type=number]{transition:border-color .2s,box-shadow .2s}
+select:hover,select:focus,input[type=search]:focus,input[type=number]:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--glow);outline:none}
+th{background:var(--panel2)}
+.lead{border-left:3px solid var(--acc);padding-left:12px}
+/* chuyển thẻ: nội dung hiện dần */
+.tab.on{animation:gxTabIn .42s var(--ease)}
+@keyframes gxTabIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.tab.tin .panel{animation:gxPanelIn .55s var(--ease) both}
+.tab.tin .panel:nth-of-type(2){animation-delay:.05s}.tab.tin .panel:nth-of-type(3){animation-delay:.1s}.tab.tin .panel:nth-of-type(4){animation-delay:.15s}.tab.tin .panel:nth-of-type(n+5){animation-delay:.2s}
+@keyframes gxPanelIn{from{opacity:0;transform:translateY(14px) scale(.995)}to{opacity:1;transform:none}}
+.tab.tin .ndbt i,.tab.tin .u3bar i,.tab.tin .kpGz i{animation:gxBar .9s var(--ease) both;transform-origin:left}
+@keyframes gxBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* nút menu và ngăn kéo trên điện thoại */
+.mnuBtn{display:none}
+.mnu{position:fixed;inset:0;z-index:60;display:flex}
+.mnu[hidden]{display:none}
+.mnu .mbg{position:absolute;inset:0;background:rgba(2,8,20,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:gxFade .2s}
+.mnu .mpn{position:relative;width:min(88vw,380px);height:100%;overflow:auto;background:var(--panel);border-right:1px solid var(--edge);box-shadow:12px 0 40px rgba(0,0,0,.35);padding:14px 14px calc(20px + env(safe-area-inset-bottom,0px));animation:gxSlide .26s var(--ease)}
+@keyframes gxFade{from{opacity:0}}
+@keyframes gxSlide{from{transform:translateX(-100%)}}
+.mnu .mhd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.mnu .mhd b{font-size:16px}
+.mnu .mx{font:600 22px/1 var(--sans);border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:8px;width:38px;height:38px;cursor:pointer}
+.mnu input{width:100%;font:500 15px var(--sans);padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--ink);margin-bottom:10px}
+.mnu .mg{margin:10px 0 4px;font:700 12px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+.mnu .mt{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:500 15px var(--sans);color:var(--ink);background:none;border:0;border-radius:9px;padding:10px 10px;cursor:pointer;transition:background .15s,padding-left .2s var(--ease)}
+.mnu .mt:hover,.mnu .mt:focus-visible{background:color-mix(in srgb,var(--acc) 12%,transparent);padding-left:14px}
+.mnu .mt[aria-current="true"]{background:color-mix(in srgb,var(--acc) 16%,transparent);box-shadow:inset 3px 0 0 var(--acc);font-weight:700}
+.mnu .mt .mnew{font:700 10px var(--sans);color:#03122A;background:var(--k1);border-radius:99px;padding:1px 6px}
+@media(max-width:700px){
+  .mnuBtn{display:flex;align-items:center;gap:8px;width:100%;margin:8px 0 8px;font:600 14px var(--sans);color:var(--ink);background:color-mix(in srgb,var(--acc) 10%,var(--panel));border:1px solid color-mix(in srgb,var(--acc) 45%,var(--line));border-radius:10px;padding:9px 12px;cursor:pointer;box-shadow:0 0 14px var(--glow)}
+  .mnuBtn .mi{font-size:18px;line-height:1}.mnuBtn .mc{flex:1;min-width:0;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mnuBtn .mc small{color:var(--muted);font-weight:500}
+  #tabWrap{display:none!important}
+  .top{padding:18px 16px 12px}.hero-stats{gap:6px}.hero-stats span{padding:4px 9px}.hero-stats b{font-size:15px}
+  .switches{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+  .switches::-webkit-scrollbar{display:none}
+  .switches>*{flex:none}
+  .switches .srch{flex:1 0 210px}
+}
+@media(min-width:1440px){.wrap{max-width:1360px}}
+@media(min-width:1800px){.wrap{max-width:1520px}body{font-size:15.5px}}
+@media(prefers-reduced-motion:reduce){
+  .gx-sky i,.hero-fx .ring,.hero-fx .wave,.tab.on,.tab.tin .panel,.tab.tin .ndbt i,.tab.tin .u3bar i,.tab.tin .kpGz i,.mnu .mpn,.mnu .mbg,.tgrp.open>.tdrop{animation:none!important}
+  .hero-fx .wave{opacity:.4}
+  *{transition-duration:.01ms!important}
+}
+@media print{.gx-sky,.hero-fx,.mnu,.mnuBtn{display:none!important}}
+
+</style>
+<script src="./assets/js/simulator-16.js"></script>
+<style id="gxGroup">
+
+/* ===== Khung giải thích (lead) full ngang, canh đều, nền kính mờ ===== */
+.tab>.lead,.lead{max-width:none;width:auto;text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;
+  background:color-mix(in srgb,var(--panel) 58%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border:1px solid var(--edge,var(--line));border-left:3px solid var(--acc);border-radius:10px;padding:12px 16px;line-height:1.62;box-sizing:border-box}
+@media(max-width:600px){.tab>.lead,.lead{padding:10px 12px;line-height:1.55}}
+/* ===== Hoạ tiết hero theo nhóm thẻ ===== */
+.hero-fx::before{content:"";position:absolute;right:-8%;top:-30%;width:62%;height:160%;background:radial-gradient(closest-side,color-mix(in srgb,var(--gfx) 16%,transparent),transparent);transition:background .8s;pointer-events:none}
+.hero-fx svg.gxs{right:0;transition:opacity .45s var(--ease,ease)}
+.hero-fx svg.gxs.out{opacity:0!important}
+.hero-fx svg.gxs.in{animation:gxSceneIn .6s var(--ease,ease) both}
+@keyframes gxSceneIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{transform:none}}
+.gxs .d{stroke-dasharray:1;stroke-dashoffset:1;animation:gxDraw .6s var(--ease,ease) forwards}
+.gxs .d.d2{animation-delay:.12s}.gxs .d.d3{animation-delay:.24s}
+@keyframes gxDraw{to{stroke-dashoffset:0}}
+.gxs .f{opacity:0;animation:gxFade .6s .2s var(--ease,ease) forwards}
+@keyframes gxFade{to{opacity:1}}
+.gxs .ln{fill:none;stroke:var(--gfx);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.gxs .ln.s{stroke-width:1;opacity:.55}
+.gxs .ln2{fill:none;stroke:var(--gfx2);stroke-width:1.2;stroke-linecap:round}
+.gxs .fl{fill:var(--gfx)}.gxs .fl2{fill:var(--gfx2)}
+.gxs .nd{fill:color-mix(in srgb,var(--gfx) 18%,transparent);stroke:var(--gfx);stroke-width:1.4}
+.gxs .tx{font:700 11px var(--sans,sans-serif);fill:var(--gfx2);letter-spacing:.04em}
+.gxs .ring{fill:none;stroke:var(--gfx);stroke-width:1.2;opacity:.3;transform-origin:320px 160px;animation:gxSpin 60s linear infinite}
+.gxs .ring.r2{opacity:.2;animation-duration:90s;animation-direction:reverse;stroke-dasharray:4 10}
+.gxs .wave{fill:none;stroke:var(--gfx);stroke-width:1.6;stroke-linecap:round;opacity:0;animation:gxWave 4s ease-out infinite}
+.gxs .wave.w2{animation-delay:1.3s}.gxs .wave.w3{animation-delay:2.6s}
+.gxs .pk{fill:var(--gfx2)}
+.gxs .beam{fill:color-mix(in srgb,var(--gfx) 14%,transparent);stroke:var(--gfx);stroke-width:.8;opacity:.8;transform-origin:520px 128px;animation:gxBeam 7s ease-in-out infinite alternate}
+.gxs .beam.b2{animation-delay:-3.5s;opacity:.55}
+@keyframes gxBeam{from{transform:rotate(-14deg)}to{transform:rotate(16deg)}}
+.gxs .bub{transform-box:fill-box;transform-origin:center;animation:gxBub 6s ease-in-out infinite}
+.gxs .bub.u2{animation-delay:-2s}.gxs .bub.u3{animation-delay:-4s}
+@keyframes gxBub{0%,100%{transform:translateY(0);opacity:.95}50%{transform:translateY(-10px);opacity:.6}}
+.gxs .fib{fill:none;stroke:var(--gfx2);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:14 120;animation:gxFib 3.2s linear infinite}
+.gxs .fib.f2{animation-duration:4.1s;animation-delay:-1.4s}.gxs .fib.f3{animation-duration:2.7s;animation-delay:-.6s}
+@keyframes gxFib{from{stroke-dashoffset:134}to{stroke-dashoffset:0}}
+.gxs .shd{transform-box:fill-box;transform-origin:center;animation:gxShd 4s ease-in-out infinite}
+@keyframes gxShd{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 6px var(--gfx))}}
+.gxs .bar{transform-box:fill-box;transform-origin:50% 100%;animation:gxBar 5s ease-in-out infinite}
+.gxs .bar:nth-of-type(2n){animation-delay:-1.7s}.gxs .bar:nth-of-type(3n){animation-delay:-3.1s}
+@keyframes gxBar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.62)}}
+.gxs .trend{fill:none;stroke:var(--gfx2);stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:gxTrend 6s ease-in-out infinite}
+@keyframes gxTrend{0%{stroke-dashoffset:1}45%,75%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
+.gxs .ndl{transform-box:fill-box;transform-origin:0 100%;animation:gxNdl 6s ease-in-out infinite alternate}
+@keyframes gxNdl{from{transform:rotate(-30deg)}to{transform:rotate(40deg)}}
+.gxs .pg{transform-box:fill-box;transform-origin:0 50%;animation:gxPg 7s ease-in-out infinite}
+@keyframes gxPg{0%,60%,100%{transform:scaleX(1)}80%{transform:scaleX(-.15)}}
+.gxs .glw{animation:gxGlw 3.6s ease-in-out infinite}.gxs .glw.g2{animation-delay:-1.2s}.gxs .glw.g3{animation-delay:-2.4s}
+@keyframes gxGlw{0%,100%{opacity:.35}50%{opacity:1}}
+@media(max-width:600px){.hero-fx svg.gxs{opacity:.35;width:115vw;right:-12vw}}
+@media(prefers-reduced-motion:reduce){.gxs .ring,.gxs .wave,.gxs .beam,.gxs .bub,.gxs .fib,.gxs .shd,.gxs .bar,.gxs .trend,.gxs .ndl,.gxs .pg,.gxs .glw,.hero-fx svg.gxs.in{animation:none!important}
+  .gxs .d{stroke-dashoffset:0;animation:none}.gxs .f{opacity:1;animation:none}.gxs .wave{opacity:.4}.gxs .trend{stroke-dashoffset:0}}
+
+@property --th{syntax:'<number>';inherits:true;initial-value:205}
+:root{transition:--th .8s ease}
+.gx-tint{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(1100px 620px at 88% -12%,hsl(var(--th) 82% 46% / .22),transparent 62%),radial-gradient(900px 700px at -8% 108%,hsl(calc(var(--th) + 18) 72% 42% / .15),transparent 60%),linear-gradient(180deg,hsl(var(--th) 70% 30% / .06),transparent 40%)}
+:root:not([data-theme="dark"]) .gx-tint{background:radial-gradient(1100px 620px at 88% -12%,hsl(var(--th) 85% 58% / .13),transparent 62%),radial-gradient(900px 700px at -8% 108%,hsl(calc(var(--th) + 18) 80% 60% / .09),transparent 60%)}
+header.top{background-image:linear-gradient(115deg,transparent 35%,hsl(var(--th) 80% 50% / .10))}
+:root:not([data-theme="dark"]) header.top{background-image:linear-gradient(115deg,transparent 35%,hsl(var(--th) 85% 60% / .10))}
+.hero-fx svg.gxt{right:0;top:0;height:100%;width:min(640px,58vw)}
+.gxs.hashl .gpt{opacity:.6;transition:opacity .4s,filter .4s}
+.gxs .gpt.hl{opacity:1;filter:drop-shadow(0 0 6px var(--gfx))}
+.gxs .gpt.hl .nd{fill:color-mix(in srgb,var(--gfx) 34%,transparent);stroke-width:2.2}
+.gxs .gpt.hl .ln{stroke-width:2.2}.gxs .gpt.hl .tx{fill:#fff}
+:root:not([data-theme="dark"]) .gxs .gpt.hl .tx{fill:var(--gfx)}
+.gxlab{position:absolute;right:22px;bottom:16px;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:1px;max-width:min(440px,44vw);padding:7px 14px;border-radius:12px;
+  background:color-mix(in srgb,var(--panel) 50%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid color-mix(in srgb,var(--gfx) 45%,transparent);
+  box-shadow:0 0 18px color-mix(in srgb,var(--gfx) 22%,transparent);pointer-events:none;text-align:right;transition:border-color .6s,box-shadow .6s}
+.gxlab b{font:800 15.5px/1.25 var(--sans);color:var(--gfx2)}
+:root:not([data-theme="dark"]) .gxlab b{color:var(--gfx)}
+.gxlab span{font:500 12.5px/1.3 var(--sans);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+@media(max-width:860px){.gxlab{position:relative;right:auto;bottom:auto;align-items:flex-start;text-align:left;margin:10px 0 0;max-width:100%}}
+@media(max-width:600px){.hero-fx svg.gxt{width:100vw;opacity:.32}}
+@media(prefers-reduced-motion:reduce){:root{transition:none}}
+
+</style>
+<script src="./assets/js/simulator-17.js"></script>
+</body></html>
